@@ -14,6 +14,7 @@
 		5317933F20FCA419001D2B3F /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5317933D20FCA419001D2B3F /* LaunchScreen.storyboard */; };
 		5317934D20FCA60C001D2B3F /* Note.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5317934C20FCA60C001D2B3F /* Note.swift */; };
 		533CB6DA20FCA9BF0056B123 /* NoteTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 533CB6D920FCA9BF0056B123 /* NoteTableViewCell.swift */; };
+		53D2480020FCD52F00E7C0F8 /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53D247FF20FCD52F00E7C0F8 /* DetailViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -26,6 +27,7 @@
 		5317934020FCA419001D2B3F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		5317934C20FCA60C001D2B3F /* Note.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Note.swift; sourceTree = "<group>"; };
 		533CB6D920FCA9BF0056B123 /* NoteTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoteTableViewCell.swift; sourceTree = "<group>"; };
+		53D247FF20FCD52F00E7C0F8 /* DetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -114,6 +116,7 @@
 			isa = PBXGroup;
 			children = (
 				5317933620FCA418001D2B3F /* NoteViewController.swift */,
+				53D247FF20FCD52F00E7C0F8 /* DetailViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -191,6 +194,7 @@
 			files = (
 				5317933720FCA418001D2B3F /* NoteViewController.swift in Sources */,
 				5317933520FCA418001D2B3F /* AppDelegate.swift in Sources */,
+				53D2480020FCD52F00E7C0F8 /* DetailViewController.swift in Sources */,
 				5317934D20FCA60C001D2B3F /* Note.swift in Sources */,
 				533CB6DA20FCA9BF0056B123 /* NoteTableViewCell.swift in Sources */,
 			);

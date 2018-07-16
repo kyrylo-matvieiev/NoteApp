@@ -10,12 +10,13 @@ import UIKit
 
 
 class Note {
+    var noteName: String
+    var noteDate: Date
+    var noteBody: String
     
-    @IBOutlet weak var noteName: UILabel!
-    
-    @IBOutlet weak var noteDate: UILabel!
-    
-    
-    
-    
+    init(noteName: String, noteDate: Date, noteBody: String) {
+        self.noteName = noteName
+        self.noteDate = noteDate
+        self.noteBody = noteBody
+    } 
 }
