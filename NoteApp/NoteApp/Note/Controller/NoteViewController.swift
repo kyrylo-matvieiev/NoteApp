@@ -9,6 +9,8 @@
 import UIKit
 
 class NoteViewController: UIViewController {
+    
+    @IBOutlet weak var tableView: UITableView!
     var dataSource: [Note] = []
     
     override func viewDidLoad() {
@@ -22,7 +24,10 @@ class NoteViewController: UIViewController {
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "NoteDetail" {
-          
+            let selectedCell = sender as! NoteTableViewCell
+            let indexPath = self.tableView.indexPath(for: selectedCell)
+            let destinationViewController = segue.destination as! DetailViewController
+            
             
         }
     }
