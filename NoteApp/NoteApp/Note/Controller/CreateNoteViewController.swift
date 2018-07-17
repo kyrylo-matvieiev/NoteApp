@@ -17,11 +17,7 @@ class CreateNoteViewController: UIViewController {
         self.enterNoteDescription.delegate = self
         self.enterNoteName.delegate = self
     }
-    
-    deinit {
-        print("View <<* CreateNoteViewController *>> deinit")
-    }
-    
+        
     @IBAction func saveNewNoteButton(_ sender: Any) {
         guard self.enterNoteName.text?.isEmpty == false, self.enterNoteDescription.text?.isEmpty == false  else { return }
         let newNote = Note(noteName: self.enterNoteName.text!, noteBody: self.enterNoteDescription.text!)

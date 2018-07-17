@@ -48,6 +48,9 @@
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Hca-tA-ZuU">
                                                     <rect key="frame" x="247" y="26" width="44" height="30"/>
                                                     <state key="normal" title="Done?"/>
+                                                    <connections>
+                                                        <action selector="doneButtonAction:" destination="ZcL-c5-EcT" eventType="touchUpInside" id="lLh-vO-omJ"/>
+                                                    </connections>
                                                 </button>
                                                 <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="rXm-ba-Hbb">
                                                     <rect key="frame" x="15" y="16" width="81" height="51"/>
@@ -79,6 +82,7 @@
                                             <constraint firstAttribute="trailing" secondItem="Hca-tA-ZuU" secondAttribute="trailing" constant="84" id="fSh-KW-fJk"/>
                                         </constraints>
                                         <connections>
+                                            <outlet property="doneButton" destination="Hca-tA-ZuU" id="eoY-ef-zFA"/>
                                             <outlet property="noteDate" destination="0CY-1x-fYM" id="Kzu-vo-n8H"/>
                                             <outlet property="noteName" destination="CzG-eu-zh0" id="OGX-Dq-yt1"/>
                                             <segue destination="6yW-sk-dR4" kind="show" identifier="NoteDetail" id="cAz-HL-8Sj"/>
@@ -190,8 +194,8 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="y5p-aw-OHd">
-                                <rect key="frame" x="16" y="64" width="343" height="603"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="y5p-aw-OHd">
+                                <rect key="frame" x="16" y="64" width="343" height="85"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -201,7 +205,7 @@
                         <constraints>
                             <constraint firstItem="y5p-aw-OHd" firstAttribute="trailing" secondItem="oQS-If-3be" secondAttribute="trailing" constant="-16" id="4b7-5K-K9n"/>
                             <constraint firstItem="y5p-aw-OHd" firstAttribute="leading" secondItem="oQS-If-3be" secondAttribute="leading" constant="16" id="RJK-al-SWm"/>
-                            <constraint firstItem="y5p-aw-OHd" firstAttribute="bottom" secondItem="oQS-If-3be" secondAttribute="bottom" id="isJ-gy-QOR"/>
+                            <constraint firstItem="y5p-aw-OHd" firstAttribute="bottom" secondItem="oQS-If-3be" secondAttribute="bottom" constant="-518" id="isJ-gy-QOR"/>
                             <constraint firstItem="y5p-aw-OHd" firstAttribute="top" secondItem="oQS-If-3be" secondAttribute="top" id="yGN-0H-Jpk"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="oQS-If-3be"/>

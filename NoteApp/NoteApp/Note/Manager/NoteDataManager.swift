@@ -37,10 +37,6 @@ class NoteDataManager: NoteRepository {
     func updateNote(_ note: Note) {
         guard let index = self.listOfNotes.index(where: { $0.id == note.id }) else { return }
         self.listOfNotes[index] = note
-        
-        
-//        self.listOfNotes[index].noteBody = note.noteBody
-//        self.listOfNotes[index].noteDate = note.noteDate
-//        self.listOfNotes[index].noteName = note.noteName
     }
+    
 }

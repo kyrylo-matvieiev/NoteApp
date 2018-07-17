@@ -12,11 +12,12 @@ class NoteViewController: UIViewController {
     
     @IBOutlet private weak var tableView: UITableView!
     
-    var dataSource: NoteDataManager = NoteDataManager.sharedInstance
-    
+    private var dataSource: NoteRepository = NoteDataManager.sharedInstance
+    private var cellModels: [Note] = []
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
+        cellModels = dataSource.getAllNotes()
         self.tableView.reloadData()
     }
     
@@ -25,34 +26,39 @@ class NoteViewController: UIViewController {
         self.tableView.tableFooterView = UIView()
     }
     
-    
+
     @IBAction func createNoteButton(_ sender: Any) { /* GO TO CreateNoteViewController */ }
-    
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == "NoteDetail" {
-            let selectedCell = sender as! NoteTableViewCell
-            let indexPath = self.tableView.indexPath(for: selectedCell) //indexPath
-            let destinationViewController = segue.destination as! DetailViewController //destinationViewController
-            
-            
-        }
-    }
+
 }
 
 extension NoteViewController: UITableViewDelegate {
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        performSegue(withIdentifier: "NoteDetail", sender: indexPath.row)
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "NoteDetail" {
+            let indexPath = self.tableView.indexPathForSelectedRow?.row
+            guard let destinationViewController = segue.destination as? DetailViewController else { return }
+            destinationViewController.detailNoteInfoTmp = cellModels[indexPath!].noteBody
+        }
     }
 }
 
 extension NoteViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! NoteTableViewCell
-        cell.configure(with: self.dataSource.getAllNotes()[indexPath.row])
+        
+        let note = cellModels[indexPath.row]
+        cell.configure(with: note)
+        cell.donePressed = { [weak note, weak cell] in
+            guard let note = note else {
+                return
+            }
+            note.noteState = note.noteState.isDone ? .inProgress : .done
+            cell?.backgroundColor = note.noteState.isDone ? .green : .white
+        }
         return cell
+        
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return self.dataSource.getAllNotes().count
+        return cellModels.count
     }
 }
