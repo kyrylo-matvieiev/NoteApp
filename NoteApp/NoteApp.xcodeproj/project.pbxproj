@@ -17,6 +17,8 @@
 		53D2480020FCD52F00E7C0F8 /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53D247FF20FCD52F00E7C0F8 /* DetailViewController.swift */; };
 		53D2480220FCDFE900E7C0F8 /* CreateNoteViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53D2480120FCDFE900E7C0F8 /* CreateNoteViewController.swift */; };
 		53D2480520FCE81D00E7C0F8 /* NoteDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53D2480420FCE81D00E7C0F8 /* NoteDataManager.swift */; };
+		53FFEF0020FDC63600F406FD /* NoteRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53FFEEFF20FDC63600F406FD /* NoteRepository.swift */; };
+		53FFEF0320FDD3BE00F406FD /* Date+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53FFEF0220FDD3BE00F406FD /* Date+Extension.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -32,6 +34,8 @@
 		53D247FF20FCD52F00E7C0F8 /* DetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
 		53D2480120FCDFE900E7C0F8 /* CreateNoteViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateNoteViewController.swift; sourceTree = "<group>"; };
 		53D2480420FCE81D00E7C0F8 /* NoteDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoteDataManager.swift; sourceTree = "<group>"; };
+		53FFEEFF20FDC63600F406FD /* NoteRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoteRepository.swift; sourceTree = "<group>"; };
+		53FFEF0220FDD3BE00F406FD /* Date+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+Extension.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -101,6 +105,7 @@
 		5317934920FCA58A001D2B3F /* Note */ = {
 			isa = PBXGroup;
 			children = (
+				53FFEF0120FDD3A200F406FD /* Utils */,
 				53D2480320FCE7AA00E7C0F8 /* Manager */,
 				5317934620FCA52B001D2B3F /* Model */,
 				5317934A20FCA5AE001D2B3F /* View */,
@@ -131,8 +136,17 @@
 			isa = PBXGroup;
 			children = (
 				53D2480420FCE81D00E7C0F8 /* NoteDataManager.swift */,
+				53FFEEFF20FDC63600F406FD /* NoteRepository.swift */,
 			);
 			path = Manager;
+			sourceTree = "<group>";
+		};
+		53FFEF0120FDD3A200F406FD /* Utils */ = {
+			isa = PBXGroup;
+			children = (
+				53FFEF0220FDD3BE00F406FD /* Date+Extension.swift */,
+			);
+			path = Utils;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -211,8 +225,10 @@
 				53D2480520FCE81D00E7C0F8 /* NoteDataManager.swift in Sources */,
 				53D2480020FCD52F00E7C0F8 /* DetailViewController.swift in Sources */,
 				5317934D20FCA60C001D2B3F /* Note.swift in Sources */,
+				53FFEF0020FDC63600F406FD /* NoteRepository.swift in Sources */,
 				53D2480220FCDFE900E7C0F8 /* CreateNoteViewController.swift in Sources */,
 				533CB6DA20FCA9BF0056B123 /* NoteTableViewCell.swift in Sources */,
+				53FFEF0320FDD3BE00F406FD /* Date+Extension.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

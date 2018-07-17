@@ -10,23 +10,29 @@ import UIKit
 
 class NoteViewController: UIViewController {
     
-    @IBOutlet weak var tableView: UITableView!
-    var dataSource: [Note] = []
+    @IBOutlet private weak var tableView: UITableView!
+    
+    var dataSource: NoteDataManager = NoteDataManager.sharedInstance
+    
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        self.tableView.reloadData()
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.tableView.tableFooterView = UIView()
     }
     
     
-    @IBAction func createNoteButton(_ sender: Any) {
-        
-    }
+    @IBAction func createNoteButton(_ sender: Any) { /* GO TO CreateNoteViewController */ }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "NoteDetail" {
             let selectedCell = sender as! NoteTableViewCell
-            let indexPath = self.tableView.indexPath(for: selectedCell)
-            let destinationViewController = segue.destination as! DetailViewController
+            let indexPath = self.tableView.indexPath(for: selectedCell) //indexPath
+            let destinationViewController = segue.destination as! DetailViewController //destinationViewController
             
             
         }
@@ -42,11 +48,11 @@ extension NoteViewController: UITableViewDelegate {
 extension NoteViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! NoteTableViewCell
-        cell.configure(with: dataSource[indexPath.row])
+        cell.configure(with: self.dataSource.getAllNotes()[indexPath.row])
         return cell
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return dataSource.count
+        return self.dataSource.getAllNotes().count
     }
 }

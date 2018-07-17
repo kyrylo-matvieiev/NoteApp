@@ -8,15 +8,29 @@
 
 import UIKit
 
+enum NoteState {
+    case done, inProgress
+    var isDone: Bool {
+        switch self {
+            case .done:
+                return true
+            case .inProgress:
+                return false
+        }
+    }
+}
 
 class Note {
+    let id = UUID().uuidString
     var noteName: String
     var noteDate: Date
     var noteBody: String
+    var noteState: NoteState
     
-    init(noteName: String, noteDate: Date, noteBody: String) {
+    init(noteName: String, noteBody: String) {
         self.noteName = noteName
-        self.noteDate = noteDate
+        self.noteDate = Date()
         self.noteBody = noteBody
+        self.noteState = .inProgress
     } 
 }

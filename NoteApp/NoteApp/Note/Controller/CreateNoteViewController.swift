@@ -9,10 +9,32 @@
 import UIKit
 
 class CreateNoteViewController: UIViewController {
-    @IBOutlet weak var enterNoteName: UITextField!
-    @IBOutlet weak var enterNoteDescription: UITextField!
+    @IBOutlet private weak var enterNoteName: UITextField!
+    @IBOutlet private weak var enterNoteDescription: UITextField!
     
-    @IBAction func saveNewNoteButton(_ sender: Any) {
+    
+    override func viewDidLoad() {
+        self.enterNoteDescription.delegate = self
+        self.enterNoteName.delegate = self
     }
     
+    deinit {
+        print("View <<* CreateNoteViewController *>> deinit")
+    }
+    
+    @IBAction func saveNewNoteButton(_ sender: Any) {
+        guard self.enterNoteName.text?.isEmpty == false, self.enterNoteDescription.text?.isEmpty == false  else { return }
+        let newNote = Note(noteName: self.enterNoteName.text!, noteBody: self.enterNoteDescription.text!)
+        NoteDataManager.sharedInstance.addNewNote(newNote)
+        self.navigationController?.popViewController(animated: true)
+    }
+    
+    
+}
+
+extension CreateNoteViewController: UITextFieldDelegate {
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        textField.resignFirstResponder()
+        return true
+    }
 }

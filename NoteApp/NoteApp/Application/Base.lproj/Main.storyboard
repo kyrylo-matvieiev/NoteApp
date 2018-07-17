@@ -140,16 +140,16 @@
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="line" placeholder="Description" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="pTb-Tq-K8W">
-                                <rect key="frame" x="16" y="196" width="343" height="413"/>
+                                <rect key="frame" x="16" y="196" width="343" height="69"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="413" id="Gow-8t-QlP"/>
+                                    <constraint firstAttribute="height" constant="69" id="Gow-8t-QlP"/>
                                 </constraints>
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="CHi-RL-0xb">
-                                <rect key="frame" x="154" y="617" width="67" height="30"/>
+                                <rect key="frame" x="154" y="318" width="67" height="30"/>
                                 <state key="normal" title="SAVE"/>
                                 <connections>
                                     <action selector="saveNewNoteButton:" destination="h1K-ye-Khn" eventType="touchUpInside" id="L6O-3O-1fO"/>
@@ -163,13 +163,13 @@
                             <constraint firstItem="CHi-RL-0xb" firstAttribute="leading" secondItem="n1K-NJ-LQe" secondAttribute="leading" constant="154" id="EIx-fS-wh7"/>
                             <constraint firstItem="TmV-B4-UcR" firstAttribute="top" secondItem="HoN-KE-EEU" secondAttribute="bottom" constant="8" id="Ec9-BA-qwb"/>
                             <constraint firstItem="n1K-NJ-LQe" firstAttribute="trailing" secondItem="pTb-Tq-K8W" secondAttribute="trailing" constant="16" id="HED-hl-9E9"/>
+                            <constraint firstItem="pTb-Tq-K8W" firstAttribute="top" secondItem="TmV-B4-UcR" secondAttribute="bottom" constant="8" id="Nr9-eg-13Y"/>
                             <constraint firstItem="HoN-KE-EEU" firstAttribute="top" secondItem="n1K-NJ-LQe" secondAttribute="top" id="YRw-ng-Zjc"/>
-                            <constraint firstItem="CHi-RL-0xb" firstAttribute="top" secondItem="pTb-Tq-K8W" secondAttribute="bottom" constant="8" id="ZVY-EF-Tb4"/>
                             <constraint firstItem="HoN-KE-EEU" firstAttribute="leading" secondItem="n1K-NJ-LQe" secondAttribute="leading" id="bok-sy-7Me"/>
                             <constraint firstItem="n1K-NJ-LQe" firstAttribute="trailing" secondItem="CHi-RL-0xb" secondAttribute="trailing" constant="154" id="lkY-dw-4fS"/>
                             <constraint firstItem="HoN-KE-EEU" firstAttribute="trailing" secondItem="n1K-NJ-LQe" secondAttribute="trailing" id="mxe-Ef-kM7"/>
                             <constraint firstItem="pTb-Tq-K8W" firstAttribute="leading" secondItem="n1K-NJ-LQe" secondAttribute="leading" constant="16" id="pfd-09-yL0"/>
-                            <constraint firstItem="n1K-NJ-LQe" firstAttribute="bottom" secondItem="CHi-RL-0xb" secondAttribute="bottom" constant="20" id="qhA-6s-vA5"/>
+                            <constraint firstItem="n1K-NJ-LQe" firstAttribute="bottom" secondItem="CHi-RL-0xb" secondAttribute="bottom" constant="319" id="qhA-6s-vA5"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="n1K-NJ-LQe"/>
                     </view>
