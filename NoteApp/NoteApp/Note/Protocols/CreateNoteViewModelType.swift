@@ -9,5 +9,7 @@
 import Foundation
 
 protocol CreateNoteViewModelType {
-    func createNote(noteName: String, noteDescription: String)
+//    var noteName: String { get set }
+//    var noteBody: String { get set }
+    func createNote(noteName: String, noteBody: String)
 }

@@ -15,8 +15,8 @@ class NoteTableViewCell: UITableViewCell {
     @IBOutlet weak var doneButton: UIButton!
     
     
-    weak var veiwModel: TableViewCellViewModelType? {
-        willSet(viewModel) {
+    weak var viewModel: TableViewCellViewModelType? {
+        didSet {
             guard let viewModel = viewModel else { return }
             self.noteDate.text = viewModel.noteDate
             self.noteName.text = viewModel.noteName
@@ -26,14 +26,7 @@ class NoteTableViewCell: UITableViewCell {
     
     
 //    var donePressed: (() -> Void)?
-//
-//    func configure(with note: Note) {
-//        self.noteName.text = note.noteName
-//        self.noteDate.text = note.noteDate.dateToString()
-//        self.backgroundColor = note.noteState.isDone ? .green : .white
-//
-//    }
-    
+
     
     @IBAction func doneButtonAction(_ sender: Any) {
 //        self.backgroundColor = UIColor.green

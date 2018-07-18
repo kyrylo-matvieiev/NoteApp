@@ -46,7 +46,7 @@ extension NotesViewController: UITableViewDataSource {
         
         guard let tableViewCell = cell, let viewModel = self.viewModel else { return NoteTableViewCell() }
         let cellViewModel = viewModel.cellViewModelForIndexPath(indexPath)
-        tableViewCell.veiwModel = cellViewModel
+        tableViewCell.viewModel = cellViewModel
 
         
 //  **** TODO: callback ****
@@ -62,8 +62,10 @@ extension NotesViewController: UITableViewDataSource {
         
     }
     
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        guard let viewModel = self.viewModel else { return }
+    func tableView(_ tableView: UITableView, willSelectRowAt indexPath: IndexPath) -> IndexPath? {
+        guard let viewModel = self.viewModel else { return indexPath }
         viewModel.selecterRowAtIntexPath(indexPath)
+        return indexPath
     }
+    
 }

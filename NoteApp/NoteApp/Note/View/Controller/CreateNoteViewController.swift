@@ -18,19 +18,15 @@ class CreateNoteViewController: UIViewController {
         self.enterNoteDescription.delegate = self
         self.enterNoteName.delegate = self
         
-        
+        self.viewModel = CreateNoteViewModel()
     }
         
     @IBAction func saveNewNoteButton(_ sender: Any) {
         guard self.enterNoteName.text?.isEmpty == false, self.enterNoteDescription.text?.isEmpty == false  else { return }
         
         guard let viewModel = self.viewModel else { return }
-        viewModel.createNote(noteName: self.enterNoteName.text!, noteDescription: self.enterNoteDescription.text!)
-        
-//        let newNote = Note(noteName: self.enterNoteName.text!, noteBody: self.enterNoteDescription.text!)
-//        NoteDataManager.sharedInstance.addNewNote(newNote)
-        
-        
+        viewModel.createNote(noteName: self.enterNoteName.text!, noteBody: self.enterNoteDescription.text!)
+
         self.navigationController?.popViewController(animated: true)
     }
     

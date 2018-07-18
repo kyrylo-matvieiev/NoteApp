@@ -8,9 +8,11 @@
 
 import Foundation
 
-class CreateNoteViewMode: CreateNoteViewModelType {
-    func createNote(noteName: String, noteDescription: String) {
-        let newNote = Note(noteName: noteName, noteBody: noteDescription)
+class CreateNoteViewModel: CreateNoteViewModelType {
+
+    func createNote(noteName: String, noteBody: String) {
+        let newNote = Note(noteName: noteName, noteBody: noteBody)
         NoteDataManager.sharedInstance.addNewNote(newNote)
     }
+    
 }
