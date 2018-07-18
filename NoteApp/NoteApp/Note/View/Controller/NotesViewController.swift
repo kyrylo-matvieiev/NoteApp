@@ -11,69 +11,59 @@ import UIKit
 class NotesViewController: UIViewController {
     
     @IBOutlet private weak var tableView: UITableView!
-    var viewModel: TableViewModelType? // MVVM
-    
-    private var dataSource: NoteRepository = NoteDataManager.sharedInstance
-    private var cellModels: [Note] = []
+    private var viewModel: TableViewViewModelType?
+
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        cellModels = dataSource.getAllNotes()
         self.tableView.reloadData()
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.viewModel = TableViewModel()
         self.tableView.tableFooterView = UIView()
     }
     
-
-    @IBAction func createNoteButton(_ sender: Any) { /* GO TO CreateNoteViewController */ }
-
 }
 
 extension NotesViewController: UITableViewDelegate {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "NoteDetail" {
-            let indexPath = self.tableView.indexPathForSelectedRow?.row
             guard let destinationViewController = segue.destination as? DetailViewController else { return }
-            destinationViewController.detailNoteInfoTmp = cellModels[indexPath!].noteBody
+            destinationViewController.viewModel = viewModel?.viewModelForSelectedRow()
         }
     }
 }
 
 extension NotesViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return viewModel?.numberOfRows ?? 0
+        return viewModel?.numbersOfRows() ?? 0
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as? NoteTableViewCell
         
         guard let tableViewCell = cell, let viewModel = self.viewModel else { return NoteTableViewCell() }
+        let cellViewModel = viewModel.cellViewModelForIndexPath(indexPath)
+        tableViewCell.veiwModel = cellViewModel
+
         
-        //let note = cellModels[indexPath.row]
-        let note = viewModel.notes[indexPath.row]
+//  **** TODO: callback ****
         
-//        cell.configure(with: note)
-//        cell.donePressed = { [weak note, weak cell] in
-//            guard let note = note else {
-//                return
-//            }
-//            note.noteState = note.noteState.isDone ? .inProgress : .done
-//            cell?.backgroundColor = note.noteState.isDone ? .green : .white
-//        }
-//        return cell
-        
-        tableViewCell.configure(with: note)
+/*
         tableViewCell.donePressed = { [weak note, weak cell] in
-            guard let note = note else {
-                return
-            }
+            guard let note = note else { return }
             note.noteState = note.noteState.isDone ? .inProgress : .done
             cell?.backgroundColor = note.noteState.isDone ? .green : .white
         }
+ */
         return tableViewCell
         
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        guard let viewModel = self.viewModel else { return }
+        viewModel.selecterRowAtIntexPath(indexPath)
     }
 }

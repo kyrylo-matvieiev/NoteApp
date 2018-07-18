@@ -10,11 +10,12 @@ import UIKit
 
 class DetailViewController: UIViewController {
     @IBOutlet weak var detailNoteInfo: UILabel!
-    var detailNoteInfoTmp = String()
-    
+    var viewModel: DetailViewViewModelType?
+
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        self.detailNoteInfo.text = detailNoteInfoTmp
+        guard let viewModel = self.viewModel else { return }
+        self.detailNoteInfo.text = viewModel.noteBody
     }
 }

@@ -1,5 +1,5 @@
 //
-//  TableViewModelType.swift
+//  CreateNoteViewModelType.swift
 //  NoteApp
 //
 //  Created by Kyrylo Matvieiev on 7/18/18.
@@ -8,8 +8,6 @@
 
 import Foundation
 
-
-protocol TableViewModelType {
-    var numberOfRows: Int { get }
-    var notes: [Note] { get }
+protocol CreateNoteViewModelType {
+    func createNote(noteName: String, noteDescription: String)
 }

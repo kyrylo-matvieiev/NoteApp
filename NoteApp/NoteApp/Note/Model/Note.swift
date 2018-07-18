@@ -34,3 +34,6 @@ class Note {
         self.noteState = .inProgress
     } 
 }
+
+
+
