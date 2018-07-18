@@ -28,8 +28,8 @@ class NoteTableViewCell: UITableViewCell {
     //var donePressed: (() -> Void)?
 
     @IBAction func doneButtonAction(_ sender: Any) {
-        
-//        self.backgroundColor = UIColor.green
+        // НЕ ЗРОБИВ ACTION (НЕ ЗМІГ)
+        self.backgroundColor = UIColor.green
 //        donePressed?()
     }
     

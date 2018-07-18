@@ -47,7 +47,6 @@ extension NotesViewController: UITableViewDataSource {
         guard let tableViewCell = cell, let viewModel = self.viewModel else { return NoteTableViewCell() }
         let cellViewModel = viewModel.cellViewModelForIndexPath(indexPath)
         tableViewCell.viewModel = cellViewModel
-
         
 //  **** TODO: callback ****
         
