@@ -8,6 +8,15 @@
 
 import Foundation
 
+protocol TableViewViewModelType {
+    func numbersOfRows() -> Int?
+    func cellViewModelForIndexPath(_ indexPath: IndexPath) -> TableViewCellViewModelType?
+    func viewModelForSelectedRow() -> DetailViewViewModelType?
+    func selecterRowAtIntexPath(_ indexPath: IndexPath)
+}
+
+
+
 class TableViewModel: TableViewViewModelType {
     private var selectedIndexPath: IndexPath?
     

@@ -8,6 +8,12 @@
 
 import Foundation
 
+protocol CreateNoteViewModelType {
+    func createNote(noteName: String, noteBody: String)
+}
+
+
+
 class CreateNoteViewModel: CreateNoteViewModelType {
 
     func createNote(noteName: String, noteBody: String) {

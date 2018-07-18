@@ -8,6 +8,13 @@
 
 import UIKit
 
+protocol TableViewCellViewModelType: class {
+    var noteName: String { get }
+    var noteDate: String { get }
+    var backgroundColor: UIColor { get }
+}
+
+
 
 class TableViewCellViewModel: TableViewCellViewModelType {
     private var note: Note
@@ -27,5 +34,4 @@ class TableViewCellViewModel: TableViewCellViewModelType {
     var backgroundColor: UIColor {
         return self.note.noteState.isDone ? .green : .white
     }
-    
 }

@@ -8,6 +8,12 @@
 
 import Foundation
 
+protocol DetailViewViewModelType {
+    var  noteBody: String { get }
+}
+
+
+
 class DetailViewViewModel: DetailViewViewModelType {
     private var note: Note
     

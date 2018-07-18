@@ -12,6 +12,7 @@ class NoteTableViewCell: UITableViewCell {
     
     @IBOutlet private weak var noteName: UILabel!
     @IBOutlet private weak var noteDate: UILabel!
+    
     @IBOutlet weak var doneButton: UIButton!
     
     
@@ -24,11 +25,10 @@ class NoteTableViewCell: UITableViewCell {
         }
     }
     
-    
-//    var donePressed: (() -> Void)?
+    //var donePressed: (() -> Void)?
 
-    
     @IBAction func doneButtonAction(_ sender: Any) {
+        
 //        self.backgroundColor = UIColor.green
 //        donePressed?()
     }
