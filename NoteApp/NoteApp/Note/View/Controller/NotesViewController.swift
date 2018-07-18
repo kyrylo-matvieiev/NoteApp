@@ -8,9 +8,10 @@
 
 import UIKit
 
-class NoteViewController: UIViewController {
+class NotesViewController: UIViewController {
     
     @IBOutlet private weak var tableView: UITableView!
+    var viewModel: TableViewModelType? // MVVM
     
     private var dataSource: NoteRepository = NoteDataManager.sharedInstance
     private var cellModels: [Note] = []
@@ -31,7 +32,7 @@ class NoteViewController: UIViewController {
 
 }
 
-extension NoteViewController: UITableViewDelegate {
+extension NotesViewController: UITableViewDelegate {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "NoteDetail" {
             let indexPath = self.tableView.indexPathForSelectedRow?.row
@@ -41,24 +42,38 @@ extension NoteViewController: UITableViewDelegate {
     }
 }
 
-extension NoteViewController: UITableViewDataSource {
+extension NotesViewController: UITableViewDataSource {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return viewModel?.numberOfRows ?? 0
+    }
+    
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! NoteTableViewCell
+        let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as? NoteTableViewCell
         
-        let note = cellModels[indexPath.row]
-        cell.configure(with: note)
-        cell.donePressed = { [weak note, weak cell] in
+        guard let tableViewCell = cell, let viewModel = self.viewModel else { return NoteTableViewCell() }
+        
+        //let note = cellModels[indexPath.row]
+        let note = viewModel.notes[indexPath.row]
+        
+//        cell.configure(with: note)
+//        cell.donePressed = { [weak note, weak cell] in
+//            guard let note = note else {
+//                return
+//            }
+//            note.noteState = note.noteState.isDone ? .inProgress : .done
+//            cell?.backgroundColor = note.noteState.isDone ? .green : .white
+//        }
+//        return cell
+        
+        tableViewCell.configure(with: note)
+        tableViewCell.donePressed = { [weak note, weak cell] in
             guard let note = note else {
                 return
             }
             note.noteState = note.noteState.isDone ? .inProgress : .done
             cell?.backgroundColor = note.noteState.isDone ? .green : .white
         }
-        return cell
+        return tableViewCell
         
-    }
-    
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return cellModels.count
     }
 }

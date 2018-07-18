@@ -6,7 +6,7 @@
 //  Copyright © 2018 Kyrylo Matvieiev. All rights reserved.
 //
 
-import UIKit
+import Foundation
 
 enum NoteState {
     case done, inProgress
