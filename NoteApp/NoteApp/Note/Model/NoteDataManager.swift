@@ -7,10 +7,13 @@
 //
 
 import Foundation
+import RealmSwift
 
 class NoteDataManager: NoteRepository {
     private var listOfNotes: [Note] = []
     static let sharedInstance = NoteDataManager()
+    //private var realm: Realm
+    
     
     private init() {}
     

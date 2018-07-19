@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import RealmSwift
 
 enum NoteState {
     case done, inProgress
@@ -20,20 +21,11 @@ enum NoteState {
     }
 }
 
-class Note {
-    let id = UUID().uuidString
-    var noteName: String
-    var noteDate: Date
-    var noteBody: String
-    var noteState: NoteState
-    
-    init(noteName: String, noteBody: String) {
-        self.noteName = noteName
-        self.noteDate = Date()
-        self.noteBody = noteBody
-        self.noteState = .inProgress
-    } 
+class Note: Object {
+    @objc dynamic var noteName: String = ""
+    @objc dynamic var noteBody: String = ""
+    @objc dynamic var noteDate: Date = Date()
+    @objc dynamic var id: String = UUID().uuidString
+
+   // @objc dynamic var noteState: NoteState
 }
-
-
-
