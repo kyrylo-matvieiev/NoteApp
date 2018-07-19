@@ -11,17 +11,19 @@ import UIKit
 class NotesViewController: UIViewController {
     
     @IBOutlet private weak var tableView: UITableView!
-    private var viewModel: TableViewViewModelType?
+    var viewModel: TableViewViewModelType?
 
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
+        
+        self.viewModel?.reloadData()
+        
         self.tableView.reloadData()
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.viewModel = TableViewModel()
         self.tableView.tableFooterView = UIView()
     }
     
@@ -38,7 +40,7 @@ extension NotesViewController: UITableViewDelegate {
 
 extension NotesViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return viewModel?.numbersOfRows() ?? 0
+        return viewModel?.numbersOfNotesForRows() ?? 0
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {

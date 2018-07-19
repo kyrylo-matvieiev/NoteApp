@@ -15,13 +15,13 @@ protocol DetailViewViewModelType {
 
 
 class DetailViewViewModel: DetailViewViewModelType {
-    private var note: Note
+    private var note: TableViewCellViewModelType
     
     var noteBody: String {
         return self.note.noteBody
     }
     
-    init(note: Note) {
+    init(note: TableViewCellViewModelType) {
         self.note = note
     }
 }

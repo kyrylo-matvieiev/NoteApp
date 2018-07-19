@@ -86,6 +86,8 @@
 		5317934620FCA52B001D2B3F /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				53FFEEFF20FDC63600F406FD /* NoteRepository.swift */,
+				53D2480420FCE81D00E7C0F8 /* NoteDataManager.swift */,
 				5317934C20FCA60C001D2B3F /* Note.swift */,
 			);
 			path = Model;
@@ -114,8 +116,6 @@
 			isa = PBXGroup;
 			children = (
 				53FFEF0120FDD3A200F406FD /* Utils */,
-				53D2480320FCE7AA00E7C0F8 /* Manager */,
-				53ABBEB020FF3C140090DAB0 /* Protocols */,
 				5317934620FCA52B001D2B3F /* Model */,
 				53ABBEB120FF3C320090DAB0 /* ViewModel */,
 				5317934A20FCA5AE001D2B3F /* View */,
@@ -142,14 +142,6 @@
 			path = Controller;
 			sourceTree = "<group>";
 		};
-		53ABBEB020FF3C140090DAB0 /* Protocols */ = {
-			isa = PBXGroup;
-			children = (
-				53FFEEFF20FDC63600F406FD /* NoteRepository.swift */,
-			);
-			path = Protocols;
-			sourceTree = "<group>";
-		};
 		53ABBEB120FF3C320090DAB0 /* ViewModel */ = {
 			isa = PBXGroup;
 			children = (
@@ -159,14 +151,6 @@
 				5332A83820FF6CFF001D86B6 /* CreateNoteViewModel.swift */,
 			);
 			path = ViewModel;
-			sourceTree = "<group>";
-		};
-		53D2480320FCE7AA00E7C0F8 /* Manager */ = {
-			isa = PBXGroup;
-			children = (
-				53D2480420FCE81D00E7C0F8 /* NoteDataManager.swift */,
-			);
-			path = Manager;
 			sourceTree = "<group>";
 		};
 		53FFEF0120FDD3A200F406FD /* Utils */ = {

@@ -11,6 +11,9 @@ import UIKit
 protocol TableViewCellViewModelType: class {
     var noteName: String { get }
     var noteDate: String { get }
+    
+    var noteBody: String { get }
+    
     var backgroundColor: UIColor { get }
     var backgroundUpdated: ((UIColor) -> Void)? { get set }
     func donePressed()
@@ -29,6 +32,10 @@ class TableViewCellViewModel: TableViewCellViewModelType {
     
     var noteName: String {
         return self.note.noteName
+    }
+    
+    var noteBody: String {
+        return self.note.noteBody 
     }
     
     var noteDate: String {

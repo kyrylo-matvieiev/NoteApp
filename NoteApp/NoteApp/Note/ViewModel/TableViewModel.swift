@@ -9,39 +9,47 @@
 import Foundation
 
 protocol TableViewViewModelType {
-    func numbersOfRows() -> Int?
+    func numbersOfNotesForRows() -> Int?
     func cellViewModelForIndexPath(_ indexPath: IndexPath) -> TableViewCellViewModelType?
     func viewModelForSelectedRow() -> DetailViewViewModelType?
     func selecterRowAtIntexPath(_ indexPath: IndexPath)
-    //func reloadData()
+    
+    func reloadData()
 }
 
 
 
 class TableViewModel: TableViewViewModelType {
-    private var selectedIndexPath: IndexPath?
-    private var cellViewModels: [TableViewCellViewModel]?
     
-    init() {
-        
+    let notesRepository: NoteRepository
+    
+    private var selectedIndexPath: IndexPath?
+    private var cellViewModels: [TableViewCellViewModel] = []
+    
+    init(notesRepository: NoteRepository) {
+        self.notesRepository = notesRepository
     }
     
-    func numbersOfRows() -> Int? {
-        return NoteDataManager.sharedInstance.getAllNotes().count
+    func reloadData() {
+        cellViewModels = notesRepository.getAllNotes().map({ TableViewCellViewModel(note: $0) })
+    }
+    
+    func numbersOfNotesForRows() -> Int? {
+        return self.cellViewModels.count
     }
     
     func cellViewModelForIndexPath(_ indexPath: IndexPath) -> TableViewCellViewModelType? {
-        let note = NoteDataManager.sharedInstance.getAllNotes()[indexPath.row]
-        return TableViewCellViewModel(note: note)
+        return self.cellViewModels[indexPath.row]
     }
     
     func viewModelForSelectedRow() -> DetailViewViewModelType? {
         guard let selectedIndexPath = self.selectedIndexPath else { return nil}
-        return DetailViewViewModel(note: NoteDataManager.sharedInstance.getAllNotes()[selectedIndexPath.row])
+        return DetailViewViewModel(note: self.cellViewModels[selectedIndexPath.row])
     }
     
     func selecterRowAtIntexPath(_ indexPath: IndexPath) {
         self.selectedIndexPath = indexPath
     }
+    
  
 }

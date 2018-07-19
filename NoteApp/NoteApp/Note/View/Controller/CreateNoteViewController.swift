@@ -26,7 +26,7 @@ class CreateNoteViewController: UIViewController {
         
         guard let viewModel = self.viewModel else { return }
         viewModel.createNote(noteName: self.enterNoteName.text!, noteBody: self.enterNoteDescription.text!)
-
+        
         self.navigationController?.popViewController(animated: true)
     }
     
