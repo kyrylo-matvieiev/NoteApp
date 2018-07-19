@@ -8,20 +8,20 @@
 
 import Foundation
 
-protocol DetailViewViewModelType {
+protocol DetailViewModelType {
     var  noteBody: String { get }
 }
 
 
 
-class DetailViewViewModel: DetailViewViewModelType {
-    private var note: TableViewCellViewModelType
+class DetailViewModel: DetailViewModelType {
+    private var note: NoteCellViewModelType
     
     var noteBody: String {
         return self.note.noteBody
     }
     
-    init(note: TableViewCellViewModelType) {
+    init(note: NoteCellViewModelType) {
         self.note = note
     }
 }

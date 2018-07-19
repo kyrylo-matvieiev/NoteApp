@@ -8,43 +8,42 @@
 
 import Foundation
 
-protocol TableViewViewModelType {
-    func numbersOfNotesForRows() -> Int?
-    func cellViewModelForIndexPath(_ indexPath: IndexPath) -> TableViewCellViewModelType?
-    func viewModelForSelectedRow() -> DetailViewViewModelType?
+protocol NoteViewModelType {
+    func cellViewModelForIndexPath(_ indexPath: IndexPath) -> NoteCellViewModelType?
+    func viewModelForSelectedRow() -> DetailViewModelType?
     func selecterRowAtIntexPath(_ indexPath: IndexPath)
-    
+    func numbersOfNotesForRows() -> Int?
     func reloadData()
 }
 
 
 
-class TableViewModel: TableViewViewModelType {
+class NoteViewModel: NoteViewModelType {
     
     let notesRepository: NoteRepository
     
     private var selectedIndexPath: IndexPath?
-    private var cellViewModels: [TableViewCellViewModel] = []
+    private var cellViewModels: [NoteCellViewModel] = []
     
     init(notesRepository: NoteRepository) {
         self.notesRepository = notesRepository
     }
     
     func reloadData() {
-        cellViewModels = notesRepository.getAllNotes().map({ TableViewCellViewModel(note: $0) })
+        cellViewModels = notesRepository.getAllNotes().map({ NoteCellViewModel(note: $0) })
     }
     
     func numbersOfNotesForRows() -> Int? {
         return self.cellViewModels.count
     }
     
-    func cellViewModelForIndexPath(_ indexPath: IndexPath) -> TableViewCellViewModelType? {
+    func cellViewModelForIndexPath(_ indexPath: IndexPath) -> NoteCellViewModelType? {
         return self.cellViewModels[indexPath.row]
     }
     
-    func viewModelForSelectedRow() -> DetailViewViewModelType? {
+    func viewModelForSelectedRow() -> DetailViewModelType? {
         guard let selectedIndexPath = self.selectedIndexPath else { return nil}
-        return DetailViewViewModel(note: self.cellViewModels[selectedIndexPath.row])
+        return DetailViewModel(note: self.cellViewModels[selectedIndexPath.row])
     }
     
     func selecterRowAtIntexPath(_ indexPath: IndexPath) {

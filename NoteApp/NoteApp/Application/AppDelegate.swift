@@ -18,7 +18,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         let nav = window?.rootViewController as! UINavigationController
         let notesVC = nav.topViewController as! NotesViewController
-        notesVC.viewModel = TableViewModel(notesRepository: NoteDataManager.sharedInstance)
+        notesVC.viewModel = NoteViewModel(notesRepository: NoteDataManager.sharedInstance)
         
         return true
     }

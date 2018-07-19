@@ -11,14 +11,12 @@ import UIKit
 class NotesViewController: UIViewController {
     
     @IBOutlet private weak var tableView: UITableView!
-    var viewModel: TableViewViewModelType?
+    var viewModel: NoteViewModelType?
 
-    
+
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        
         self.viewModel?.reloadData()
-        
         self.tableView.reloadData()
     }
     

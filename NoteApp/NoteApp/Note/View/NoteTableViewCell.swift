@@ -14,7 +14,7 @@ class NoteTableViewCell: UITableViewCell {
     @IBOutlet private weak var noteDate: UILabel!
     
     
-    var viewModel: TableViewCellViewModelType? {
+    var viewModel: NoteCellViewModelType? {
         didSet {
             
             guard let viewModel = viewModel else { return }

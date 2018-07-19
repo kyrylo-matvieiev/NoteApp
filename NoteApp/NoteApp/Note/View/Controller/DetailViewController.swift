@@ -10,7 +10,7 @@ import UIKit
 
 class DetailViewController: UIViewController {
     @IBOutlet weak var detailNoteInfo: UILabel!
-    var viewModel: DetailViewViewModelType?
+    var viewModel: DetailViewModelType?
 
     
     override func viewWillAppear(_ animated: Bool) {

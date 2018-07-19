@@ -8,20 +8,19 @@
 
 import UIKit
 
-protocol TableViewCellViewModelType: class {
+protocol NoteCellViewModelType: class {
+    var backgroundUpdated: ((UIColor) -> Void)? { get set }
+    var backgroundColor: UIColor { get }
     var noteName: String { get }
     var noteDate: String { get }
-    
     var noteBody: String { get }
     
-    var backgroundColor: UIColor { get }
-    var backgroundUpdated: ((UIColor) -> Void)? { get set }
     func donePressed()
 }
 
 
 
-class TableViewCellViewModel: TableViewCellViewModelType {
+class NoteCellViewModel: NoteCellViewModelType {
     private var note: Note
     
     var backgroundUpdated: ((UIColor) -> Void)?
