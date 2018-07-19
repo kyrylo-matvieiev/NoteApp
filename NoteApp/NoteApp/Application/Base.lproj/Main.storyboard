@@ -82,7 +82,6 @@
                                             <constraint firstAttribute="trailing" secondItem="Hca-tA-ZuU" secondAttribute="trailing" constant="84" id="fSh-KW-fJk"/>
                                         </constraints>
                                         <connections>
-                                            <outlet property="doneButton" destination="Hca-tA-ZuU" id="eoY-ef-zFA"/>
                                             <outlet property="noteDate" destination="0CY-1x-fYM" id="Kzu-vo-n8H"/>
                                             <outlet property="noteName" destination="CzG-eu-zh0" id="OGX-Dq-yt1"/>
                                             <segue destination="6yW-sk-dR4" kind="show" identifier="NoteDetail" id="cAz-HL-8Sj"/>

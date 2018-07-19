@@ -13,24 +13,26 @@ class NoteTableViewCell: UITableViewCell {
     @IBOutlet private weak var noteName: UILabel!
     @IBOutlet private weak var noteDate: UILabel!
     
-    @IBOutlet weak var doneButton: UIButton!
     
-    
-    weak var viewModel: TableViewCellViewModelType? {
+    var viewModel: TableViewCellViewModelType? {
         didSet {
+            
             guard let viewModel = viewModel else { return }
             self.noteDate.text = viewModel.noteDate
             self.noteName.text = viewModel.noteName
             self.backgroundColor = viewModel.backgroundColor
+            
+            viewModel.backgroundUpdated = { [weak self] color in
+                self?.backgroundColor = color
+            }
+            
         }
     }
     
-    //var donePressed: (() -> Void)?
-
+    
     @IBAction func doneButtonAction(_ sender: Any) {
-        // НЕ ЗРОБИВ ACTION (НЕ ЗМІГ)
         self.backgroundColor = UIColor.green
-//        donePressed?()
+        viewModel?.donePressed()
     }
     
 }

@@ -13,12 +13,18 @@ protocol TableViewViewModelType {
     func cellViewModelForIndexPath(_ indexPath: IndexPath) -> TableViewCellViewModelType?
     func viewModelForSelectedRow() -> DetailViewViewModelType?
     func selecterRowAtIntexPath(_ indexPath: IndexPath)
+    //func reloadData()
 }
 
 
 
 class TableViewModel: TableViewViewModelType {
     private var selectedIndexPath: IndexPath?
+    private var cellViewModels: [TableViewCellViewModel]?
+    
+    init() {
+        
+    }
     
     func numbersOfRows() -> Int? {
         return NoteDataManager.sharedInstance.getAllNotes().count
@@ -37,5 +43,5 @@ class TableViewModel: TableViewViewModelType {
     func selecterRowAtIntexPath(_ indexPath: IndexPath) {
         self.selectedIndexPath = indexPath
     }
-    
+ 
 }

@@ -12,13 +12,16 @@ protocol TableViewCellViewModelType: class {
     var noteName: String { get }
     var noteDate: String { get }
     var backgroundColor: UIColor { get }
-    func pressedDoneButton(atIndexPath: IndexPath)
+    var backgroundUpdated: ((UIColor) -> Void)? { get set }
+    func donePressed()
 }
 
 
 
 class TableViewCellViewModel: TableViewCellViewModelType {
     private var note: Note
+    
+    var backgroundUpdated: ((UIColor) -> Void)?
     
     init(note: Note) {
         self.note = note
@@ -36,7 +39,9 @@ class TableViewCellViewModel: TableViewCellViewModelType {
         return self.note.noteState.isDone ? .green : .white
     }
     
-    func pressedDoneButton(atIndexPath: IndexPath) {
-        note.noteState = note.noteState.isDone ? .inProgress : .done
+    func donePressed() {
+        self.note.noteState = self.note.noteState.isDone ? .inProgress : .done
+        backgroundUpdated?(backgroundColor)
     }
+    
 }

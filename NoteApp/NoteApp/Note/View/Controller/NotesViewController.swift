@@ -43,22 +43,11 @@ extension NotesViewController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as? NoteTableViewCell
-        
         guard let tableViewCell = cell, let viewModel = self.viewModel else { return NoteTableViewCell() }
         let cellViewModel = viewModel.cellViewModelForIndexPath(indexPath)
         tableViewCell.viewModel = cellViewModel
         
-//  **** TODO: callback ****
-        
-/*
-        tableViewCell.donePressed = { [weak note, weak cell] in
-            guard let note = note else { return }
-            note.noteState = note.noteState.isDone ? .inProgress : .done
-            cell?.backgroundColor = note.noteState.isDone ? .green : .white
-        }
- */
         return tableViewCell
-        
     }
     
     func tableView(_ tableView: UITableView, willSelectRowAt indexPath: IndexPath) -> IndexPath? {
