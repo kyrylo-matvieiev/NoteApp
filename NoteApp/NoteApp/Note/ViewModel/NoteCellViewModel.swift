@@ -15,7 +15,7 @@ protocol NoteCellViewModelType: class {
     var noteDate: String { get }
     var noteBody: String { get }
     
-    func donePressed()
+   func donePressed()
 }
 
 
@@ -44,7 +44,7 @@ class NoteCellViewModel: NoteCellViewModelType {
     var backgroundColor: UIColor {
         return self.note.noteState.isDone ? .green : .white
     }
-    
+
     func donePressed() {
         self.note.noteState = self.note.noteState.isDone ? .inProgress : .done
         backgroundUpdated?(backgroundColor)

@@ -10,10 +10,9 @@ import Foundation
 import RealmSwift
 
 protocol NoteRepository {
-    //func getAllNotes() -> [Note]
-    func getAllNotes() -> Results<Note>
+    func getAllNotes() -> [Note]
     func addNewNote(_ note: Note)
     func getNoteById(_ id: String) -> Note?
-    func removeById(_ id: String) -> Bool
-    func updateNote(_ note: Note)
+    func modifyNote(_ blockTransaction: () -> Void)
+    func deleteAllNoteFromDb()
  }

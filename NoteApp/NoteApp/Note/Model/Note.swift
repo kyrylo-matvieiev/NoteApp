@@ -26,6 +26,26 @@ class Note: Object {
     @objc dynamic var noteBody: String = ""
     @objc dynamic var noteDate: Date = Date()
     @objc dynamic var id: String = UUID().uuidString
-
-   // @objc dynamic var noteState: NoteState
+    
+    var noteState: NoteState {
+        get {
+            return rawState ? .done : .inProgress
+        }
+        set {
+            try! realm?.write {
+                rawState = newValue == .done
+            }
+        }
+    }
+    @objc private dynamic var rawState: Bool = false
+    
+    //    convenience init(noteName: String, noteBody: String) {
+    //        self.init()
+    //        self.noteName = noteName
+    //        self.noteBody = noteBody
+    //    }
+    
+    override static func primaryKey() -> String? {
+        return "id"
+    }
 }

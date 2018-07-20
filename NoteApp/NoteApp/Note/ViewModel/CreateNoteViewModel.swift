@@ -17,7 +17,9 @@ protocol CreateNoteViewModelType {
 class CreateNoteViewModel: CreateNoteViewModelType {
 
     func createNote(noteName: String, noteBody: String) {
-        let newNote = Note(noteName: noteName, noteBody: noteBody)
+        let newNote = Note()
+        newNote.noteName = noteName
+        newNote.noteBody = noteBody
         NoteDataManager.sharedInstance.addNewNote(newNote)
     }
     
