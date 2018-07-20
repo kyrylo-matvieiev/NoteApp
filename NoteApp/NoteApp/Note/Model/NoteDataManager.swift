@@ -10,26 +10,41 @@ import Foundation
 import RealmSwift
 
 class NoteDataManager: NoteRepository {
-    private var listOfNotes: [Note] = []
     static let sharedInstance = NoteDataManager()
-    //private var realm: Realm
+    private var listOfNotes: [Note] = []
+    
+    private var realm: Realm
+    
+    private init() { self.realm = try! Realm() }
     
     
-    private init() {}
-    
-    
-    func getAllNotes() -> [Note] {
-        return self.listOfNotes
+    func getAllNotes() -> Results<Note> {
+        let listOfNotesResult = self.realm.objects(Note.self)
+        return listOfNotesResult
     }
     
     func addNewNote(_ note: Note) {
-        self.listOfNotes.append(note)
+        try! realm.write {
+            realm.add(note, update: true)
+        }
     }
     
     func getNoteById(_ id: String) -> Note? {
-        guard let note = self.listOfNotes.first(where: { $0.id == id }) else { return nil }
+        guard let note = getAllNotes().filter("id == \(id)").first else { return nil }
         return note
     }
+//    func getAllNotes() -> [Note] {
+//        return self.listOfNotes
+//    }
+    
+//    func addNewNote(_ note: Note) {
+//        self.listOfNotes.append(note)
+//    }
+    
+//    func getNoteById(_ id: String) -> Note? {
+//        guard let note = self.listOfNotes.first(where: { $0.id == id }) else { return nil }
+//        return note
+//    }
     
     func removeById(_ id: String) -> Bool {
         guard let index = self.listOfNotes.index(where: { $0.id == id }) else {  return false }
