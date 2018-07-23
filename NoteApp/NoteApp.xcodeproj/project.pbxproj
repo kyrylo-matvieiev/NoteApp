@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		530990102105BA510096FE4B /* ReactiveSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5309900F2105BA510096FE4B /* ReactiveSwift.framework */; };
+		530990122105BB9B0096FE4B /* Result.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 530990112105BB9B0096FE4B /* Result.framework */; };
 		5317933520FCA418001D2B3F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5317933420FCA418001D2B3F /* AppDelegate.swift */; };
 		5317933720FCA418001D2B3F /* NotesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5317933620FCA418001D2B3F /* NotesViewController.swift */; };
 		5317933A20FCA418001D2B3F /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5317933820FCA418001D2B3F /* Main.storyboard */; };
@@ -30,6 +32,8 @@
 
 /* Begin PBXFileReference section */
 		50F4C7B4DFBB1D2BF28C261A /* Pods-NoteApp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NoteApp.release.xcconfig"; path = "Pods/Target Support Files/Pods-NoteApp/Pods-NoteApp.release.xcconfig"; sourceTree = "<group>"; };
+		5309900F2105BA510096FE4B /* ReactiveSwift.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = ReactiveSwift.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		530990112105BB9B0096FE4B /* Result.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Result.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		5317933120FCA418001D2B3F /* NoteApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = NoteApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		5317933420FCA418001D2B3F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		5317933620FCA418001D2B3F /* NotesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotesViewController.swift; sourceTree = "<group>"; };
@@ -59,6 +63,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				530990122105BB9B0096FE4B /* Result.framework in Frameworks */,
+				530990102105BA510096FE4B /* ReactiveSwift.framework in Frameworks */,
 				53BF1D692100C78900996F4F /* Realm.framework in Frameworks */,
 				53BF1D672100C78300996F4F /* RealmSwift.framework in Frameworks */,
 				A58EB543D9CB693D7CA49D7B /* Pods_NoteApp.framework in Frameworks */,
@@ -186,6 +192,8 @@
 		6A04173727E5887CD97D0625 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				530990112105BB9B0096FE4B /* Result.framework */,
+				5309900F2105BA510096FE4B /* ReactiveSwift.framework */,
 				53BF1D682100C78900996F4F /* Realm.framework */,
 				53BF1D662100C78300996F4F /* RealmSwift.framework */,
 				FAC73991AB82B483859EB47D /* Pods_NoteApp.framework */,
@@ -287,13 +295,17 @@
 			);
 			inputPaths = (
 				"${SRCROOT}/Pods/Target Support Files/Pods-NoteApp/Pods-NoteApp-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/ReactiveSwift/ReactiveSwift.framework",
 				"${BUILT_PRODUCTS_DIR}/Realm/Realm.framework",
 				"${BUILT_PRODUCTS_DIR}/RealmSwift/RealmSwift.framework",
+				"${BUILT_PRODUCTS_DIR}/Result/Result.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ReactiveSwift.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Realm.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RealmSwift.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Result.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;

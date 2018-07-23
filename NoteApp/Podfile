@@ -7,6 +7,6 @@ target 'NoteApp' do
 
   # Pods for NoteApp
    pod 'RealmSwift', '~> 3.7'
-  
-
+   pod 'ReactiveSwift', '~> 3.0'
+   
 end

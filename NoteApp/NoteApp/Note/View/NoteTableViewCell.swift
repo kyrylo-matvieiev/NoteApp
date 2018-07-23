@@ -7,32 +7,33 @@
 //
 
 import UIKit
+import ReactiveSwift
+import Result
 
 class NoteTableViewCell: UITableViewCell {
     
     @IBOutlet private weak var noteName: UILabel!
     @IBOutlet private weak var noteDate: UILabel!
+    var bindingLifetime = Lifetime.make()
     
     
     var viewModel: NoteCellViewModelType? {
         didSet {
+            bindingLifetime = Lifetime.make()
             
             guard let viewModel = viewModel else { return }
             self.noteDate.text = viewModel.noteDate
             self.noteName.text = viewModel.noteName
-            self.backgroundColor = viewModel.backgroundColor
-            
-            viewModel.backgroundUpdated = { [weak self] color in
-                self?.backgroundColor = color
+            viewModel.backgroundColor.take(during: bindingLifetime.lifetime).startWithValues { [weak self] (newColor) in
+                self?.backgroundColor = newColor
             }
-            
         }
     }
     
     
     @IBAction func doneButtonAction(_ sender: Any) {
-        self.backgroundColor = UIColor.green
-        viewModel?.donePressed()
+        //viewModel?.donePressed()
+        viewModel?.doneButtonPressed.send(value: ())
     }
     
 }

@@ -7,6 +7,8 @@
 //
 
 import Foundation
+import ReactiveSwift
+import Result
 
 protocol DetailViewModelType {
     var  noteBody: String { get }
