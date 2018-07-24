@@ -19,7 +19,6 @@ protocol NoteViewModelType {
     func reloadData()
     
     var mutableText: MutableProperty<String> { get set }
-    //var observer: Signal<String, NoError>.Observer? { get set }
 }
 
 
@@ -35,11 +34,15 @@ class NoteViewModel: NoteViewModelType {
     init(notesRepository: NoteRepository) {
         self.notesRepository = notesRepository
         
-        mutableText.signal.observeValues { (val) in
-            print(val)
-//          self.cellViewModels =  self.cellViewModels.filter({ (model) -> Bool in
-//
-//            })
+        mutableText.signal.observeValues { [weak self] (val) in
+            guard let strongSelf = self else {return}
+            if val.count > 2, val != "" {
+                strongSelf.cellViewModels =  strongSelf.cellViewModels.filter({ (model) -> Bool in
+                    model.noteName.lowercased().contains(val.lowercased())
+                })
+            } else {
+                strongSelf.reloadData()
+            }
         }
     }
     
