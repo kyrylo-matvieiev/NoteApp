@@ -7,12 +7,26 @@
 //
 
 import UIKit
+import ReactiveSwift
+import ReactiveCocoa
+import Result
 
 class NotesViewController: UIViewController {
     
     @IBOutlet private weak var tableView: UITableView!
     var viewModel: NoteViewModelType?
-
+    var lifeTime = Lifetime.make()
+    
+    lazy var searchController: UISearchController = ({
+        let controller = UISearchController(searchResultsController: nil)
+        controller.dimsBackgroundDuringPresentation = false
+        controller.searchBar.sizeToFit()
+        controller.searchBar.barStyle = .black
+        controller.searchBar.barTintColor = .black
+        controller.searchBar.barTintColor = .clear
+        controller.searchBar.placeholder = "Search note"
+        return controller
+    })()
 
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
@@ -23,8 +37,9 @@ class NotesViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.tableView.tableFooterView = UIView()
+        self.tableView.tableHeaderView = searchController.searchBar
+        searchController.searchBar.delegate = self
     }
-    
 }
 
 extension NotesViewController: UITableViewDelegate {
@@ -56,4 +71,11 @@ extension NotesViewController: UITableViewDataSource {
         return indexPath
     }
     
+}
+
+extension NotesViewController: UISearchBarDelegate {
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+        viewModel?.mutableText.value = searchText
+        self.tableView.reloadData()
+    }
 }
