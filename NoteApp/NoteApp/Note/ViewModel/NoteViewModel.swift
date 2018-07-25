@@ -13,10 +13,12 @@ import Result
 
 protocol NoteViewModelType {
     func cellViewModelForIndexPath(_ indexPath: IndexPath) -> NoteCellViewModelType?
-    func viewModelForSelectedRow() -> DetailViewModelType?
-    func selecterRowAtIntexPath(_ indexPath: IndexPath)
+    func selectRowAtIntex(_ index: Int)
     func numbersOfNotesForRows() -> Int?
     func reloadData()
+    
+    var showDetails: Signal<DetailViewModelType, NoError> { get }
+    var onDataUpdate: Signal<Void, NoError> { get }
     
     func searh(searchBarText: String)
 }
@@ -26,11 +28,21 @@ protocol NoteViewModelType {
 class NoteViewModel: NoteViewModelType {
  
     let notesRepository: NoteRepository
-    private var selectedIndexPath: IndexPath?
     private var cellViewModels: [NoteCellViewModel] = []
+    
+    var onDataUpdate: Signal<Void, NoError>
+    private var onDataUpdateObserver: Signal<Void, NoError>.Observer
+    
+  
+    private var showDetailsObserver: Signal<DetailViewModelType, NoError>.Observer
+    
+    var showDetails: Signal<DetailViewModelType, NoError>
     
     init(notesRepository: NoteRepository) {
         self.notesRepository = notesRepository
+        
+        (onDataUpdate, onDataUpdateObserver) = Signal<Void, NoError>.pipe()
+        (showDetails, showDetailsObserver) = Signal<DetailViewModelType, NoError>.pipe()
     }
     
     func searh(searchBarText: String) {
@@ -42,13 +54,18 @@ class NoteViewModel: NoteViewModelType {
                 
             model.noteName.lowercased().contains(searchBarText.lowercased())
         })
+            onDataUpdateObserver.send(value: ())
         } else {
             reloadData()
         }
     }
 
     func reloadData() {
-        cellViewModels = notesRepository.getAllNotes().map({ NoteCellViewModel(note: $0) })
+        DispatchQueue.main.async {
+            self.cellViewModels = self.notesRepository.getAllNotes().map({ NoteCellViewModel(note: $0) })
+            self.onDataUpdateObserver.send(value: ())
+        }
+        
     }
     
     func numbersOfNotesForRows() -> Int? {
@@ -59,13 +76,10 @@ class NoteViewModel: NoteViewModelType {
         return self.cellViewModels[indexPath.row]
     }
     
-    func viewModelForSelectedRow() -> DetailViewModelType? {
-        guard let selectedIndexPath = self.selectedIndexPath else { return nil}
-        return DetailViewModel(note: self.cellViewModels[selectedIndexPath.row])
-    }
-    
-    func selecterRowAtIntexPath(_ indexPath: IndexPath) {
-        self.selectedIndexPath = indexPath
+    func selectRowAtIntex(_ index: Int) {
+        let cellViewModel = cellViewModels[index]
+        let detailViewModel = DetailViewModel(note: cellViewModel)
+        showDetailsObserver.send(value: detailViewModel)
     }
     
  

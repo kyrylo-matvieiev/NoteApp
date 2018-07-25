@@ -84,7 +84,6 @@
                                         <connections>
                                             <outlet property="noteDate" destination="0CY-1x-fYM" id="Kzu-vo-n8H"/>
                                             <outlet property="noteName" destination="CzG-eu-zh0" id="OGX-Dq-yt1"/>
-                                            <segue destination="6yW-sk-dR4" kind="show" identifier="NoteDetail" id="cAz-HL-8Sj"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
@@ -188,13 +187,13 @@
         <!--Detail View Controller-->
         <scene sceneID="LFg-x0-BjC">
             <objects>
-                <viewController id="6yW-sk-dR4" customClass="DetailViewController" customModule="NoteApp" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="detail" id="6yW-sk-dR4" customClass="DetailViewController" customModule="NoteApp" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="4qq-Xq-RTF">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="y5p-aw-OHd">
-                                <rect key="frame" x="16" y="64" width="343" height="85"/>
+                                <rect key="frame" x="16" y="20" width="343" height="129"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
