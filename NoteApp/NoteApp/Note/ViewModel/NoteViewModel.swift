@@ -18,31 +18,38 @@ protocol NoteViewModelType {
     func numbersOfNotesForRows() -> Int?
     func reloadData()
     
-    var mutableText: MutableProperty<String> { get set }
+    
+    var textFromSearchBar: MutableProperty<String> { get set }
+    var searchBarCancelButton: Signal<Void, NoError>? { get set }
 }
 
 
 
 class NoteViewModel: NoteViewModelType {
-    
+ 
     let notesRepository: NoteRepository
     private var selectedIndexPath: IndexPath?
     private var cellViewModels: [NoteCellViewModel] = []
     
-    var mutableText: MutableProperty<String> = MutableProperty("")
+    var textFromSearchBar: MutableProperty<String> = MutableProperty("")
+    var searchBarCancelButton: Signal<Void, NoError>?
     
     init(notesRepository: NoteRepository) {
         self.notesRepository = notesRepository
         
-        mutableText.signal.observeValues { [weak self] (val) in
+        textFromSearchBar.signal.observeValues { [weak self] (searchBarText) in
             guard let strongSelf = self else {return}
-            if val.count > 2, val != "" {
+            if searchBarText.count > 2, searchBarText != "" {
                 strongSelf.cellViewModels =  strongSelf.cellViewModels.filter({ (model) -> Bool in
-                    model.noteName.lowercased().contains(val.lowercased())
+                    model.noteName.lowercased().contains(searchBarText.lowercased())
                 })
             } else {
                 strongSelf.reloadData()
             }
+        }
+        
+        searchBarCancelButton?.signal.observeValues {
+            print("rrrrrr")
         }
     }
     

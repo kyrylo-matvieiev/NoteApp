@@ -39,6 +39,9 @@ class NotesViewController: UIViewController {
         self.tableView.tableFooterView = UIView()
         self.tableView.tableHeaderView = searchController.searchBar
         searchController.searchBar.delegate = self
+        
+        //viewModel?.searchBarCancelButton?.signal <~ searchController.searchBar.reactive
+        
     }
 }
 
@@ -75,7 +78,7 @@ extension NotesViewController: UITableViewDataSource {
 
 extension NotesViewController: UISearchBarDelegate {
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
-        viewModel?.mutableText.value = searchText
+        viewModel?.textFromSearchBar.value = searchText
         self.tableView.reloadData()
     }
 }
