@@ -15,7 +15,6 @@ class NotesViewController: UIViewController {
     
     @IBOutlet private weak var tableView: UITableView!
     var viewModel: NoteViewModelType?
-    var lifeTime = Lifetime.make()
     
     lazy var searchController: UISearchController = ({
         let controller = UISearchController(searchResultsController: nil)
@@ -43,7 +42,7 @@ class NotesViewController: UIViewController {
         searchController.searchBar.reactive.cancelButtonClicked.observeValues { [weak self] in
             guard let strongSelf = self else { return }
             strongSelf.viewModel?.reloadData()
-            self?.tableView.reloadData()
+            strongSelf.tableView.reloadData()
         }
         
         

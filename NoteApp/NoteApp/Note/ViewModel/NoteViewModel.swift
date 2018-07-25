@@ -34,16 +34,19 @@ class NoteViewModel: NoteViewModelType {
     }
     
     func searh(searchBarText: String) {
-        if searchBarText.count > 2, searchBarText != "" {
-            self.cellViewModels =  self.cellViewModels.filter({ (model) -> Bool in
-                model.noteName.lowercased().contains(searchBarText.lowercased())
-            })
+        if searchBarText.count > 2, searchBarText != "", searchBarText.isEmpty == false {
+        cellViewModels = notesRepository
+            .getAllNotes()
+            .map({ NoteCellViewModel(note: $0) })
+            .filter({ (model) -> Bool in
+                
+            model.noteName.lowercased().contains(searchBarText.lowercased())
+        })
         } else {
-            self.reloadData()
+            reloadData()
         }
     }
-    
-    
+
     func reloadData() {
         cellViewModels = notesRepository.getAllNotes().map({ NoteCellViewModel(note: $0) })
     }
