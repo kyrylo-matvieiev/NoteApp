@@ -6,7 +6,8 @@
 //  Copyright © 2018 Kyrylo Matvieiev. All rights reserved.
 //
 
-import UIKit
+import Foundation
+import RealmSwift
 
 enum NoteState {
     case done, inProgress
@@ -20,17 +21,31 @@ enum NoteState {
     }
 }
 
-class Note {
-    let id = UUID().uuidString
-    var noteName: String
-    var noteDate: Date
-    var noteBody: String
-    var noteState: NoteState
+class Note: Object {
+    @objc dynamic var noteName: String = ""
+    @objc dynamic var noteBody: String = ""
+    @objc dynamic var noteDate: Date = Date()
+    @objc dynamic var id: String = UUID().uuidString
     
-    init(noteName: String, noteBody: String) {
-        self.noteName = noteName
-        self.noteDate = Date()
-        self.noteBody = noteBody
-        self.noteState = .inProgress
-    } 
+    var noteState: NoteState {
+        get {
+            return rawState ? .done : .inProgress
+        }
+        set {
+            try! realm?.write {
+                rawState = newValue == .done
+            }
+        }
+    }
+    @objc private dynamic var rawState: Bool = false
+    
+    //    convenience init(noteName: String, noteBody: String) {
+    //        self.init()
+    //        self.noteName = noteName
+    //        self.noteBody = noteBody
+    //    }
+    
+    override static func primaryKey() -> String? {
+        return "id"
+    }
 }

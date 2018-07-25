@@ -15,7 +15,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
-        // Override point for customization after application launch.
+        
+        let nav = window?.rootViewController as! UINavigationController
+        let notesVC = nav.topViewController as! NotesViewController
+        notesVC.viewModel = NoteViewModel(notesRepository: NoteDataManager.sharedInstance)
+        
         return true
     }
 }
