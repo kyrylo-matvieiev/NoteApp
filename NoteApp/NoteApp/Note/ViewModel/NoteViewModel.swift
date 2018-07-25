@@ -18,9 +18,7 @@ protocol NoteViewModelType {
     func numbersOfNotesForRows() -> Int?
     func reloadData()
     
-    
-    var textFromSearchBar: MutableProperty<String> { get set }
-    var searchBarCancelButton: Signal<Void, NoError>? { get set }
+    func searh(searchBarText: String)
 }
 
 
@@ -31,27 +29,20 @@ class NoteViewModel: NoteViewModelType {
     private var selectedIndexPath: IndexPath?
     private var cellViewModels: [NoteCellViewModel] = []
     
-    var textFromSearchBar: MutableProperty<String> = MutableProperty("")
-    var searchBarCancelButton: Signal<Void, NoError>?
-    
     init(notesRepository: NoteRepository) {
         self.notesRepository = notesRepository
-        
-        textFromSearchBar.signal.observeValues { [weak self] (searchBarText) in
-            guard let strongSelf = self else {return}
-            if searchBarText.count > 2, searchBarText != "" {
-                strongSelf.cellViewModels =  strongSelf.cellViewModels.filter({ (model) -> Bool in
-                    model.noteName.lowercased().contains(searchBarText.lowercased())
-                })
-            } else {
-                strongSelf.reloadData()
-            }
-        }
-        
-        searchBarCancelButton?.signal.observeValues {
-            print("rrrrrr")
+    }
+    
+    func searh(searchBarText: String) {
+        if searchBarText.count > 2, searchBarText != "" {
+            self.cellViewModels =  self.cellViewModels.filter({ (model) -> Bool in
+                model.noteName.lowercased().contains(searchBarText.lowercased())
+            })
+        } else {
+            self.reloadData()
         }
     }
+    
     
     func reloadData() {
         cellViewModels = notesRepository.getAllNotes().map({ NoteCellViewModel(note: $0) })

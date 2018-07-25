@@ -38,10 +38,20 @@ class NotesViewController: UIViewController {
         super.viewDidLoad()
         self.tableView.tableFooterView = UIView()
         self.tableView.tableHeaderView = searchController.searchBar
-        searchController.searchBar.delegate = self
         
-        //viewModel?.searchBarCancelButton?.signal <~ searchController.searchBar.reactive
+
+        searchController.searchBar.reactive.cancelButtonClicked.observeValues { [weak self] in
+            guard let strongSelf = self else { return }
+            strongSelf.viewModel?.reloadData()
+            self?.tableView.reloadData()
+        }
         
+        
+        searchController.searchBar.reactive.continuousTextValues.observeValues { [weak self] (values) in
+            guard let strongSelf = self else { return }
+            strongSelf.viewModel?.searh(searchBarText: values!)
+            strongSelf.tableView.reloadData()
+        }
     }
 }
 
@@ -74,11 +84,4 @@ extension NotesViewController: UITableViewDataSource {
         return indexPath
     }
     
-}
-
-extension NotesViewController: UISearchBarDelegate {
-    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
-        viewModel?.textFromSearchBar.value = searchText
-        self.tableView.reloadData()
-    }
 }
